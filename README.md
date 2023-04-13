@@ -1,7 +1,7 @@
-## How to create EC2 server in AWS
+## How to create EC2 server in AWS and Create and run a script
 
 
-### The 15 Steps to follow are: 
+### The Steps to follow are: 
 
 
 1. First login to AWS and select the Region Ireland.
@@ -20,4 +20,30 @@
 14. Then copy the example and paste that into bash.
 15. It may ask you to approve yes/no type yes then  should see ubuntu ip.
 16. Once connected to ubuntu we can there install things.
-17. Using `sudo apt install XXXX`
+17. Using `sudo apt install nginx`
+18. once installed we can check in the browser by entering the ip address from aws
+
+19. to run a script we need to create a shell file
+20. `sudo nano provision.sh` 
+21. then we enter the script to ebable a automated process as a follows 
+22. 
+```
+#!/bin/bash
+
+#update  
+sudo apt update -y
+
+#upgrade 
+sudo apt upgrade -y
+
+#install nginx - 
+sudo apt install nginx -y
+
+#restart nginx  
+sudo systemctl restart nginx
+
+#enable nginx 
+sudo systemctl enable nginx
+```
+23. we then need to change the permissions by typing `sudo chmod =x provisions.sh` we can change the +x to r, w or wr depending on which permissions we want to grant, executable, read, write or read&write
+24. to run the script we type `sudo ./provision.sh`
